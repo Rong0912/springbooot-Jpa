@@ -1,0 +1,34 @@
+@startuml
+class User {
+Long id  编号
+String username 用户名
+String password 密码
+Date createAt 注册时间
+String status  状态{启用,禁用}
+}
+enum UserStatus{
+ENABLE 启用
+DISABLE 禁用
+}
+
+User "*" o--> "*" Address :中间表{user，Address}
+
+class Address {
+  Long id 编号;
+  User user 用户;
+  String realName 姓名;
+  String phone 电话;
+  String province 省;
+  String city 市;
+  String district 区;
+  String detail 详细地址;
+  Boolean isDefault 是否默认地址;
+ }
+ /'enum AddressStatus{
+ ENABLE 启用
+ DISABLE 禁用
+ }
+
+ Address "*" o--> "*"UserStatus:中间表'/
+
+@enduml
